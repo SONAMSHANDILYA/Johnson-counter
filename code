@@ -1,0 +1,23 @@
+module JohnsonCounter(
+    input wire clk,  // Clock input
+    input wire reset,  // Reset input
+    output reg [3:0] out  // 4-bit output
+);
+
+// Internal 4-bit state register
+reg [3:0] state;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        // Reset state to initial value
+        state <= 4'b0001;
+    end else begin
+        // Shift the bits in the Johnson counter
+        state <= {state[2:0], state[3]};
+    end
+end
+
+// Assign the output
+assign out = state;
+
+endmodule
