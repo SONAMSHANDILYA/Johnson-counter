@@ -1,0 +1,17 @@
+module johnsoncountertb;
+reg clk;
+  reg reset;
+  wire [3:0] counter_out;
+johnsoncounter dut (
+    .clk(clk),   
+     .reset(reset),
+    .counter_out(counter_out)
+  );
+  initial begin
+    reset = 1'b1;
+    clk = 1'b0;
+    #20reset=1'b0;
+    #100 $stop;
+  end 
+always #5 clk = ~clk; 
+endmodule
